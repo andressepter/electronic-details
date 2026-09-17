@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Box 1 &amp; Box 2 — Electronics Giveaway Catalogue</title>
+  <title>Box 1–3 — Electronics Giveaway Catalogue</title>
   <style>
     :root {
       --paper: #f3eee4;
@@ -192,7 +192,9 @@
     .guess { background: #f3e3c8; color: var(--guess); }
     .safety { background: #f8d5d4; color: var(--warn); }
     .box2-badge { background: #f3d4c0; color: var(--copper-d); }
+    .box3-badge { background: #cfe0d4; color: #1e4a32; }
     .card.box2 { border-color: #e0b090; }
+    .card.box3 { border-color: #8fb89a; }
     .box-head, .box-split {
       grid-column: 1 / -1;
     }
@@ -231,6 +233,13 @@
       font-family: ui-sans-serif, system-ui, sans-serif;
       font-size: 0.92rem;
     }
+    .box-split.box3 {
+      background: #1a2a22;
+      border-color: #6a9a78;
+      box-shadow: 0 0 0 5px rgba(106, 154, 120, 0.25);
+    }
+    .box-split.box3 .kicker { color: #8fc9a0; }
+    .box-split.box3 p { color: #c5d6cb; }
     h2 {
       font-size: 1.18rem;
       margin: 0 0 0.25rem;
@@ -300,14 +309,14 @@
 </head>
 <body>
   <header class="hero">
-    <p class="kicker">Free giveaway · Box 1 + Box 2</p>
+    <p class="kicker">Free giveaway · Box 1 + Box 2 + Box 3</p>
     <h1>Electronics surplus catalogue</h1>
     <p class="lede">
-      Identified from the photos in <span class="mono">box1-pics</span> and <span class="mono">box2-pics</span>.
+      Identified from the photos in <span class="mono">box1-pics</span>, <span class="mono">box2-pics</span> and <span class="mono">box3-pics</span>.
       Labels and datasheets were used where they were readable.
       Anything uncertain is marked <strong>best guess</strong>.
       Parts are 2006–2012 factory surplus, offered as-is.
-      Box 2 was added after Box 1 — it has its own section below.
+      Box 2 and Box 3 were added later — each has its own banner below.
     </p>
     <div class="banner">
       <div class="note">
@@ -328,6 +337,7 @@
       <button class="chip active" data-box="all">All boxes</button>
       <button class="chip" data-box="1">Box 1</button>
       <button class="chip" data-box="2">Box 2</button>
+      <button class="chip" data-box="3">Box 3</button>
       <button class="chip active" data-cat="all">All types</button>
       <button class="chip" data-cat="semiconductors">Semiconductors</button>
       <button class="chip" data-cat="ics">ICs &amp; memory</button>
@@ -346,7 +356,7 @@
   </main>
 
   <footer>
-    Catalogue built from iPhone photos taken 17 Sep 2026. Box 2 was added after Box 1. Identifications are for hobby / educational giveaway use, not a guarantee of authenticity, remaining quantity, or electrical condition. Moisture-sensitive ICs in opened bags may need baking before reflow.
+    Catalogue built from iPhone photos taken 17 Sep 2026. Box 2 and Box 3 were added after Box 1. Identifications are for hobby / educational giveaway use, not a guarantee of authenticity, remaining quantity, or electrical condition. Moisture-sensitive ICs in opened bags may need baking before reflow.
   </footer>
 
   <div class="lightbox" id="lightbox" title="Click to close">
@@ -828,6 +838,351 @@
         date: "5 July 2010",
         use: "Do not charge or install. Treat as e-waste / battery recycling only.",
         photos: ["IMG_3871", "IMG_3872"]
+      },
+      {
+        id: "ksc241",
+        box: 3,
+        cat: "misc",
+        conf: "identified",
+        name: "ITT / C&amp;K sealed SMD tact switches",
+        what: "A full reel of small square surface-mount pushbuttons. Soft click, sealed against dust and wash. The warehouse sticker calls them SWT PUSH SMD KSC241G.",
+        part: "KSC241G LFS (article Y31B41136FP LFS)",
+        mfr: "ITT Industries / C&amp;K",
+        specs: "SPST-NO tact, 6.2 × 6.2 mm, 3.5 mm height, gull-wing, 350 gf / 3.5 N, 0.5 mm travel, 50 mA / 32 V DC, IP67, 300,000 cycles.",
+        qty: "2,000 labeled",
+        date: "5 Jan 2007 (reel); warehouse 4 Jun 2007",
+        use: "Panel / PCB buttons on SMD boards. Needs a reflow or hot-air footprint, not through-hole.",
+        photos: ["IMG_3873", "IMG_3874"]
+      },
+      {
+        id: "atmega8535",
+        box: 3,
+        cat: "ics",
+        conf: "identified",
+        name: "Atmel ATmega8535L AVR microcontrollers",
+        what: "A factory reel of the classic 8-bit megaAVR. Same instruction set as the Arduino-era chips, in a 44-pin TQFP. Low-voltage ‘L’ version, 8 MHz max. MSL 3 — an opened reel may need a bake before reflow.",
+        part: "ATMEGA8535L-8AU",
+        mfr: "Atmel (AVR / megaAVR)",
+        specs: "8 KB Flash, 512 B SRAM, 512 B EEPROM, 32 I/O, UART/SPI/ADC, TQFP-44, 2.7–5.5 V, 8 MHz. MSL 3, 168 h floor life, 260 °C reflow. Qty 2,000. Lot 8F5166, DC 0820.",
+        qty: "2,000 labeled",
+        date: "Seal 29 May 2008; date code 0820",
+        use: "Hobby MCU projects if you can reflow TQFP-44. Old but perfectly usable with AVR-GCC / avrdude. Bake if the bag has been open.",
+        photos: ["IMG_3875"]
+      },
+      {
+        id: "res221-0603",
+        box: 3,
+        cat: "passives",
+        conf: "identified",
+        name: "221 Ω 1 % 0603 resistors",
+        what: "A yellow EIA reel of precision chip resistors. Warehouse name is RES 221R 1 % 0603. Handwritten count on the hub is 800 remaining of a 5,000 pack.",
+        part: "221 Ω 1 % 0603 (Vaisala stock C11100960)",
+        mfr: "Unknown (Vaisala SMD stock)",
+        specs: "221 Ω ±1 %, 0603, 0.1 W class. Original pack 5,000. Hub note Inv. 22.12.09 / 800.",
+        qty: "800 remaining (reel was 5,000)",
+        date: "26 Sep 2007",
+        use: "Everyday SMD pull-ups, LED resistors, analog dividers.",
+        photos: ["IMG_3876"]
+      },
+      {
+        id: "1n4002",
+        box: 3,
+        cat: "semiconductors",
+        conf: "identified",
+        name: "1N4002 axial rectifiers",
+        what: "A big ammo-pack reel of the most ordinary through-hole silicon diode. Black DO-41 bodies marked 1N4002 on tape with a red stripe. These are the 100 V member of the 1N400x family, not 1N4007.",
+        part: "1N4002-T",
+        mfr: "ON Semiconductor",
+        specs: "100 V, 1 A, DO-41 axial, MSL 1. Pack 5,000. D/C-LOT 0839-240147H31.H. VQC pass 27 Sep 2008.",
+        qty: "5,000 labeled",
+        date: "Warehouse 7 Apr 2009; D/C 0839",
+        use: "General rectification, reverse-polarity protection, cheap through-hole work. Not a fast / Schottky diode.",
+        photos: ["IMG_3877", "IMG_3878", "IMG_3879"]
+      },
+      {
+        id: "copper-dots",
+        box: 3,
+        cat: "misc",
+        conf: "guess",
+        name: "Copper foil discs on release paper",
+        what: "A bag of round copper stickers punched on white paper liner. Look like EMI / grounding / shielding foil dots, not components with leads. Internal number 90732 on the bag.",
+        part: "Unlabeled (bag 90732)",
+        mfr: "Unknown",
+        specs: "Adhesive copper circles, ~8–10 mm, sheets in a zip bag. Date 05.02.09.",
+        qty: "One bag (many sheets)",
+        date: "5 Feb 2009",
+        use: "EMI patches, ground straps, shielding cans, or craft/repair foil. Confirm adhesive and conductivity on a scrap board.",
+        photos: ["IMG_3880"]
+      },
+      {
+        id: "std30nf06",
+        box: 3,
+        cat: "semiconductors",
+        conf: "identified",
+        name: "ST 60 V logic-level N-MOSFET",
+        what: "A black DPAK reel of a workhorse N-channel power MOSFET. Logic-level gate (the L in the number), so a 5 V MCU can turn it on. Warehouse label: 60 V, 35 A, 0.020 Ω.",
+        part: "STD30NF06LT4",
+        mfr: "STMicroelectronics",
+        specs: "N-ch MOSFET, 60 V, 35 A, RDS(on) 20 mΩ, logic-level, DPAK (TO-252). Marking D30NF06L. MSL 1. Qty 2,500. Lot GK8450R5.",
+        qty: "2,500 labeled",
+        date: "6 Apr 2009",
+        use: "Motor drivers, load switches, LED strings, 12–24 V power stages. Needs SMD soldering.",
+        photos: ["IMG_3881", "IMG_3882", "IMG_3883", "IMG_3884"]
+      },
+      {
+        id: "samtec-smh",
+        box: 3,
+        cat: "connectors",
+        conf: "identified",
+        name: "Samtec 2×3 right-angle SMD sockets",
+        what: "A small reel of gold 2.54 mm female headers that sit flat on the PCB and accept a pin strip from the side. Six positions, two rows of three.",
+        part: "SMH-103-02-G-D-TR",
+        mfr: "Samtec",
+        specs: "6-pos receptacle, 2×3, 2.54 mm, horizontal SMT, gold, Tiger Buy contacts. Qty 125. Arrow Nordic / PO BEL/1869089.",
+        qty: "125 labeled",
+        date: "Requested 20 Jun 2008",
+        use: "Board-to-board or programming headers where a right-angle SMD socket is wanted. Mates with 0.64 mm square pins.",
+        photos: ["IMG_3885"]
+      },
+      {
+        id: "wurth-cmc",
+        box: 3,
+        cat: "passives",
+        conf: "identified",
+        name: "Würth 2×11 µH common-mode chokes",
+        what: "A blue reel of four-pad SMD line filters marked 102. These sit on a DC or low-voltage AC pair and kill common-mode noise. Warehouse current is 1.5 A; the datasheet rates 2.5 A.",
+        part: "744273102",
+        mfr: "Würth Elektronik (WE-SL5 HC)",
+        specs: "2×11 µH typical, 1 kΩ @ 100 MHz, 2.5 A (label 1.5 A), 80 V, DCR 2×30 mΩ. Qty 1,000.",
+        qty: "1,000 labeled",
+        date: "17 Jun 2011",
+        use: "USB / DC power filtering, small motor leads, EMI on MCU boards.",
+        photos: ["IMG_3886", "IMG_3887"]
+      },
+      {
+        id: "hps16a",
+        box: 3,
+        cat: "misc",
+        conf: "identified",
+        name: "HPS16A SMD piezo sounders",
+        what: "A reel of thin square piezo beepers. These are transducers — they need an external drive (555, MCU pin, or driver IC), they are not self-drive buzzers. Rapid order code 35-3544.",
+        part: "HPS16A",
+        mfr: "JL World (via Rapid / JL World)",
+        specs: "SMD piezo, ~16 × 16 × 2.5 mm, 3 V p-p rated, 4 kHz ±500 Hz, ≥75 dB @ 10 cm, side sound port. Qty 800.",
+        qty: "800 labeled",
+        date: "23 Aug 2007",
+        use: "Beeps and alarms on SMD boards. Drive with a square wave around 4 kHz; do not feed DC and expect sound.",
+        photos: ["IMG_3888"]
+      },
+      {
+        id: "tpse336",
+        box: 3,
+        cat: "passives",
+        conf: "identified",
+        name: "AVX 33 µF / 35 V tantalums (E-case)",
+        what: "A clear reel of yellow SMD tantalum capacitors, the large E case. Low-ESR TPS series — a useful bulk cap on 12–24 V rails if you test them. Old tantalums can fail short.",
+        part: "TPSE336M035R0100",
+        mfr: "AVX",
+        specs: "33 µF, 35 V, ±20 %, E-case, 100 mΩ ESR. Qty 400. Batch AK3X5221078, DC 0943.",
+        qty: "400 labeled",
+        date: "11 Aug 2009; D/C 0943",
+        use: "SMD bulk decoupling on ≤24 V. Polarity matters. Check for shorts before trusting a 2009 tantalum.",
+        photos: ["IMG_3889"]
+      },
+      {
+        id: "wurth-fpc",
+        box: 3,
+        cat: "connectors",
+        conf: "identified",
+        name: "Würth 16-pin 0.5 mm ZIF FPC connectors",
+        what: "A bubble-wrapped reel of the little ivory FPC/FFC sockets used on displays and cameras. Flip-lock ZIF, contacts on the top of the 0.3 mm flex.",
+        part: "68711614022",
+        mfr: "Würth Elektronik (WR-FPC)",
+        specs: "16 pos, 0.5 mm pitch, SMT horizontal, top contact, ZIF, 0.5 A / 50 V. Qty 1,000. Date code 2011-04-19.",
+        qty: "1,000 labeled",
+        date: "19 Apr 2011 / warehouse 15 Jun 2011",
+        use: "0.5 mm 16-way flex cables, small LCDs, camera modules. Fine-pitch SMD.",
+        photos: ["IMG_3890"]
+      },
+      {
+        id: "wurth-pbf",
+        box: 3,
+        cat: "passives",
+        conf: "identified",
+        name: "Würth 42 Ω high-current ferrite beads",
+        what: "A reel of chunky SMD ferrites for power rails, not the tiny 0603 signal beads. Warehouse rating 6 A; later Würth datasheets quote 16 A on the same part (measurement-standard change, not a new chip).",
+        part: "7427930",
+        mfr: "Würth Elektronik (WE-PBF)",
+        specs: "42 Ω ±25 % @ 100 MHz, 6 A on the 2011 label (later 16 A), ~4 × 3 × 2.55 mm, DCR 0.6 mΩ. Qty 500.",
+        qty: "500 labeled",
+        date: "12 Nov 2010; warehouse 17 Jun 2011",
+        use: "DC power-rail EMI, motor/LED supplies, 5–12 V input filters.",
+        photos: ["IMG_3891"]
+      },
+      {
+        id: "bzx84c2v7",
+        box: 3,
+        cat: "semiconductors",
+        conf: "identified",
+        name: "NXP 2.7 V SOT-23 zeners",
+        what: "A grey 8 mm reel of tiny three-pin zeners. 2.7 V is a common clamp for 3.3 V-class logic and analog references.",
+        part: "BZX84C2V7",
+        mfr: "NXP / Philips",
+        specs: "2.7 V zener, 250 mW, SOT-23. Qty 3,000.",
+        qty: "3,000 labeled",
+        date: "5 Mar 2012",
+        use: "Low-voltage clamps, crude references, input protection. Observe pinout (anode/cathode vs NPN lookalike).",
+        photos: ["IMG_3892"]
+      },
+      {
+        id: "cma3000",
+        box: 3,
+        cat: "ics",
+        conf: "identified",
+        name: "VTI CMA3000 analog 3-axis accelerometer",
+        what: "A Digi-Key reel of a tiny MEMS motion sensor with analog X/Y/Z outputs. Sibling to the digital LIS3 in Box 1, but analog — you read it with an ADC. MSL 2.",
+        part: "CMA3000-A01",
+        mfr: "VTI Technologies (now Murata)",
+        specs: "3-axis analog accelerometer, ±2 g class, 10-pin, 1.7–3.6 V. MSL 2. Digi-Key 551-1063-2-ND. Qty 100.",
+        qty: "100 labeled",
+        date: "16 Jun 2011 / warehouse 22 Jun 2011",
+        use: "Tilt, vibration, motion-wake with an MCU ADC. Fine-pitch — hot-air recommended. Bake if the bag has been open.",
+        photos: ["IMG_3893"]
+      },
+      {
+        id: "yageo-470p",
+        box: 3,
+        cat: "passives",
+        conf: "identified",
+        name: "Yageo 470 pF X7R 0805 capacitors",
+        what: "A white reel of 0805 ceramics. The inner Yageo/Phycomp label is CC0805KRX7R0BB471 — 470 pF, 10 %, 100 V. The warehouse sticker says 50 V AVX 08051C471KAT2A, which is a different part; trust the manufacturer label on the hub.",
+        part: "CC0805KRX7R0BB471",
+        mfr: "Yageo / Phycomp",
+        specs: "470 pF, X7R, ±10 %, 100 V, 0805. Qty 4,000. Date code 0948. COO Taiwan.",
+        qty: "4,000 labeled",
+        date: "17 Jun 2010; D/C 0948",
+        use: "Decoupling, snubbers, filters. 100 V rating is plenty for 5–24 V boards.",
+        photos: ["IMG_3894", "IMG_3895"]
+      },
+      {
+        id: "bas16",
+        box: 3,
+        cat: "semiconductors",
+        conf: "identified",
+        name: "ON Semi BAS16 switching diodes",
+        what: "A grey reel of the standard small-signal SOT-23 diode. Fast, low current — the SMD cousin of 1N4148.",
+        part: "BAS16LT1G",
+        mfr: "ON Semiconductor",
+        specs: "75 V, 215 mA, SOT-23, MSL 1. Qty 3,000. Lot MQ708007L, date 0709. Assembled China (MQ).",
+        qty: "3,000 labeled",
+        date: "8 Apr 2009; DTE 0709",
+        use: "Logic steering, small clamps, cheap SMD 1N4148 replacement.",
+        photos: ["IMG_3896", "IMG_3897"]
+      },
+      {
+        id: "byv26e",
+        box: 3,
+        cat: "semiconductors",
+        conf: "identified",
+        name: "Vishay BYV26E ultrafast axial diodes",
+        what: "An ammo reel of small grey glass axial diodes marked BYV26E. These are 1000 V ultrafast recovery parts — a step up from 1N4007 when you need speed.",
+        part: "BYV26E-TR",
+        mfr: "Vishay",
+        specs: "1000 V, 1 A, ultrafast, SOD-57 axial, origin Hungary. Qty 5,000. Lot 7707334B39 / 07069211.",
+        qty: "5,000 labeled",
+        date: "Lot 07069211 (2007 class)",
+        use: "SMPS, snubbers, high-voltage freewheel where 1N4007 is too slow. Through-hole.",
+        photos: ["IMG_3898", "IMG_3899"]
+      },
+      {
+        id: "philips-270r",
+        box: 3,
+        cat: "passives",
+        conf: "identified",
+        name: "Philips 270 Ω 1 % 0805 resistors (not RoHS)",
+        what: "A yellow reel of 0805 chip resistors. The warehouse sticker is marked Not RoHS — these are the older tin/lead finish. Handwritten Estonian on the hub says take them back to Latitude if that many are needed. Remaining count looks like ~3,335.",
+        part: "RC12H 270R 1 % 0805 (2322 734 62701)",
+        mfr: "Philips",
+        specs: "270 Ω ±1 %, 0.125 W, 100 ppm, 0805. Leaded finish. Origin pack 4,310 / 5,000. Made in Taiwan.",
+        qty: "~3,335 remaining (pack 4,310–5,000)",
+        date: "Date 01112 on reel; warehouse 5 Dec 2006",
+        use: "SMD work where RoHS does not matter. Same 270 Ω value as everyday LED / terminator resistors.",
+        photos: ["IMG_3900"]
+      },
+      {
+        id: "rohm-36k",
+        box: 3,
+        cat: "passives",
+        conf: "identified",
+        name: "ROHM 36 kΩ 0402 resistors",
+        what: "A 0402 reel from ROHM, originally 10,000 pieces. Hub is marked ‘vii Lattu tagasi’ (take back to Latitude) and 1800 remaining.",
+        part: "MCR01MZP J 363",
+        mfr: "ROHM",
+        specs: "36 kΩ ±5 % (J), 0402 (MCR01). Original 10,000. Date 0835. Pb-free.",
+        qty: "~1,800 remaining (reel was 10,000)",
+        date: "15 Sep 2008; D/C 0835",
+        use: "Tiny SMD pull-ups and analog dividers. 0402 is fiddly without tweezers / hot air.",
+        photos: ["IMG_3901"]
+      },
+      {
+        id: "kemet-1nf",
+        box: 3,
+        cat: "passives",
+        conf: "identified",
+        name: "KEMET 1 nF / 100 V 0805 ceramics",
+        what: "A cream reel of 0805 ceramics, handwritten 1 nF on the label. Oldest dated reel in this box — April 2000.",
+        part: "C0805C102K1RAC7800",
+        mfr: "KEMET",
+        specs: "1 nF (102), ±10 %, 100 V, X7R, 0805. Qty 4,000. Batch OC667416.",
+        qty: "4,000 labeled",
+        date: "17 Apr 2000",
+        use: "Decoupling and filters. 100 V X7R is a safe general-purpose 1 nF.",
+        photos: ["IMG_3902"]
+      },
+      {
+        id: "byg21m",
+        box: 3,
+        cat: "semiconductors",
+        conf: "identified",
+        name: "Vishay BYG21M SMA avalanche diodes",
+        what: "A white SMD reel. The manufacturer labels are BYG21M-E3/TR — a 1000 V / 1.5 A SMA avalanche rectifier. The warehouse sticker says BYG70J 600 V 1 A, which is the wrong stock name. Trust the Vishay print.",
+        part: "BYG21M-E3/TR (warehouse name BYG70J)",
+        mfr: "Vishay General Semiconductor",
+        specs: "1000 V, 1.5 A, avalanche rectifier, SMA (DO-214AC). Qty 1,800 (warehouse also printed 1,500). DTE 0831. Vaisala SMD stock.",
+        qty: "1,800 labeled",
+        date: "24 Nov 2008; DTE 0831",
+        use: "SMD high-voltage rectification, snubbers, small SMPS. Not a 600 V BYG70J despite the warehouse name.",
+        photos: ["IMG_3903", "IMG_3904", "IMG_3905"]
+      },
+      {
+        id: "res78k7",
+        box: 3,
+        cat: "passives",
+        conf: "identified",
+        name: "78.7 kΩ 1 % 0603 resistors",
+        what: "A short remaining reel from Farnell. E96 value 78.7 kΩ — typical for analog dividers and feedback networks. Only 150 pieces on the label.",
+        part: "78.7 kΩ 1 % 0603 (Farnell 117-0976)",
+        mfr: "Unknown (Farnell reel, Thailand)",
+        specs: "78.7 kΩ ±1 %, 0603, 0.063 W, 100 ppm. Qty 150. RoHS.",
+        qty: "150 labeled",
+        date: "17 Mar (year truncated on warehouse label)",
+        use: "Precision dividers, op-amp feedback, ADC references.",
+        photos: ["IMG_3906", "IMG_3907"]
+      },
+      {
+        id: "tajc476",
+        box: 3,
+        cat: "passives",
+        conf: "identified",
+        name: "AVX 47 µF / 16 V tantalums (C-case)",
+        what: "Another clear tantalum reel, smaller C case. Manufacturer is AVX TAJ 47 µF 16 V 10 %. The warehouse sticker calls it a 20 % Vishay 293D crossover — same footprint family, but the parts on the tape are AVX. Old tantalums can fail short.",
+        part: "TAJC476K016R",
+        mfr: "AVX",
+        specs: "47 µF, 16 V, ±10 %, C-case, MSL 1. Qty 500. Date code 0719. COO El Salvador.",
+        qty: "500 labeled",
+        date: "11 Feb 2008; D/C 0719",
+        use: "3.3 V / 5 V / 12 V SMD bulk caps. Observe polarity. Test before putting in a real circuit.",
+        photos: ["IMG_3908", "IMG_3909", "IMG_3910", "IMG_3911"]
       }
     ];
 
@@ -839,19 +1194,40 @@
 
     function boxOf(it) { return it.box || 1; }
 
+    function picDir(it) {
+      const b = boxOf(it);
+      if (b === 3) return "box3-pics";
+      if (b === 2) return "box2-pics";
+      return "box1-pics";
+    }
+
+    function boxClass(it) {
+      const b = boxOf(it);
+      if (b === 3) return " box3";
+      if (b === 2) return " box2";
+      return "";
+    }
+
+    function boxBadge(it) {
+      const b = boxOf(it);
+      if (b === 3) return `<span class="badge box3-badge">Box 3</span>`;
+      if (b === 2) return `<span class="badge box2-badge">Box 2</span>`;
+      return "";
+    }
+
     function cardHTML(it) {
       const n = it.photos.length;
       const photoClass = n === 1 ? "photos one" : "photos";
-      const dir = boxOf(it) === 2 ? "box2-pics" : "box1-pics";
+      const dir = picDir(it);
       const imgs = it.photos.slice(0, 4).map((p) =>
         `<img src="thumbs/${p}.jpg" alt="${it.name}" data-full="${dir}/${p}.JPEG" data-cap="${p} · ${it.part}" />`
       ).join("");
       const badges = [
         `<span class="badge ${it.conf}">${it.conf === "identified" ? "Identified" : "Best guess"}</span>`,
-        boxOf(it) === 2 ? `<span class="badge box2-badge">Box 2</span>` : "",
+        boxBadge(it),
         it.safety ? `<span class="badge safety">Do not use</span>` : ""
       ].join("");
-      return `<article class="card${boxOf(it) === 2 ? " box2" : ""}">
+      return `<article class="card${boxClass(it)}">
         <div class="${photoClass}">${imgs}</div>
         <div class="body">
           <div class="meta">${badges}</div>
@@ -873,11 +1249,22 @@
       <p class="kicker">Original catalogue</p>
       <h3>Box 1</h3>
     </aside>`;
-    const splitHTML = `<aside class="box-split">
+    const split2HTML = `<aside class="box-split">
       <p class="kicker">Added later</p>
       <h3>Box 2</h3>
       <p>A second carton, photographed after Box 1 was already catalogued. Same 2006–2012 surplus, same giveaway rules. The Li-ion pouches here are also 2010 — recycle only.</p>
     </aside>`;
+    const split3HTML = `<aside class="box-split box3">
+      <p class="kicker">Added later still</p>
+      <h3>Box 3</h3>
+      <p>A third carton of mostly reels: AVR micros, MOSFETs, diodes, passives, Würth magnetics, and SMD connectors. Photographed after Box 1 and Box 2. One ATmega reel is MSL 3 — bake before reflow if the bag has been open.</p>
+    </aside>`;
+
+    function splitFor(box) {
+      if (box === 3) return split3HTML;
+      if (box === 2) return split2HTML;
+      return box1HTML;
+    }
 
     function render() {
       const q = search.value.trim().toLowerCase();
@@ -890,20 +1277,25 @@
       });
       const n1 = ITEMS.filter((it) => boxOf(it) === 1).length;
       const n2 = ITEMS.filter((it) => boxOf(it) === 2).length;
+      const n3 = ITEMS.filter((it) => boxOf(it) === 3).length;
       if (shown.length === ITEMS.length) {
-        countEl.textContent = ITEMS.length + " lots · Box 1 (" + n1 + ") + Box 2 (" + n2 + ")";
+        countEl.textContent = ITEMS.length + " lots · Box 1 (" + n1 + ") + Box 2 (" + n2 + ") + Box 3 (" + n3 + ")";
       } else {
         countEl.textContent = shown.length + " of " + ITEMS.length + " lots";
       }
       const parts = [];
       let lastBox = null;
-      const has1 = shown.some((it) => boxOf(it) === 1);
-      const has2 = shown.some((it) => boxOf(it) === 2);
-      if (has1 && has2) parts.push(box1HTML);
-      if (!has1 && has2) parts.push(splitHTML);
+      const boxesInView = [];
       shown.forEach((it) => {
         const b = boxOf(it);
-        if (has1 && has2 && lastBox === 1 && b === 2) parts.push(splitHTML);
+        if (!boxesInView.includes(b)) boxesInView.push(b);
+      });
+      const multi = boxesInView.length > 1;
+      if (multi && boxesInView.includes(1)) parts.push(box1HTML);
+      if (!multi && boxesInView[0] && boxesInView[0] !== 1) parts.push(splitFor(boxesInView[0]));
+      shown.forEach((it) => {
+        const b = boxOf(it);
+        if (multi && lastBox !== null && b !== lastBox) parts.push(splitFor(b));
         lastBox = b;
         parts.push(cardHTML(it));
       });
