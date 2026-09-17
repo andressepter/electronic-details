@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Box 1 — Electronics Giveaway Catalogue</title>
+  <style>
+    :root {
+      --paper: #f3eee4;
+      --ink: #1c1914;
+      --muted: #5e574c;
+      --card: #fffaf2;
+      --line: #ddd4c4;
+      --copper: #c45c26;
+      --copper-d: #9a3f14;
+      --ok: #2f6b4f;
+      --guess: #9a6b2f;
+      --warn: #9b2226;
+      --chip: #ebe3d4;
+      --shadow: 0 10px 30px rgba(40, 28, 12, 0.08);
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body {
+      font-family: "Iowan Old Style", "Palatino Linotype", Palatino, "Times New Roman", serif;
+      background: var(--paper);
+      color: var(--ink);
+      line-height: 1.45;
+    }
+    code, .mono, .qty, .part {
+      font-family: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+    }
+    header.hero {
+      padding: 2.4rem 1.4rem 1.2rem;
+      max-width: 1180px;
+      margin: 0 auto;
+    }
+    .kicker {
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      font-size: 0.72rem;
+      color: var(--copper);
+      font-family: ui-sans-serif, system-ui, sans-serif;
+      font-weight: 700;
+      margin: 0 0 0.4rem;
+    }
+    h1 {
+      font-size: clamp(2rem, 4vw, 3.1rem);
+      font-weight: 700;
+      margin: 0 0 0.6rem;
+      letter-spacing: -0.02em;
+    }
+    .lede {
+      max-width: 62ch;
+      color: var(--muted);
+      font-size: 1.05rem;
+      margin: 0 0 1.2rem;
+    }
+    .banner {
+      display: grid;
+      gap: 0.8rem;
+      grid-template-columns: 1fr;
+      margin: 1.2rem 0 0.4rem;
+    }
+    @media (min-width: 800px) {
+      .banner { grid-template-columns: 1.4fr 1fr; }
+    }
+    .note, .warn-note {
+      border-radius: 14px;
+      padding: 0.95rem 1.05rem;
+      font-family: ui-sans-serif, system-ui, sans-serif;
+      font-size: 0.92rem;
+    }
+    .note {
+      background: #efe6d4;
+      border: 1px solid var(--line);
+    }
+    .warn-note {
+      background: #f8e6e4;
+      border: 1px solid #e8b4b0;
+      color: #5c1416;
+    }
+    .note strong, .warn-note strong { display: block; margin-bottom: 0.2rem; }
+    .toolbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(243, 238, 228, 0.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--line);
+      padding: 0.7rem 1.4rem 0.85rem;
+    }
+    .toolbar-inner {
+      max-width: 1180px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.55rem;
+      align-items: center;
+    }
+    #search {
+      flex: 1 1 220px;
+      min-width: 180px;
+      border: 1px solid var(--line);
+      background: var(--card);
+      border-radius: 999px;
+      padding: 0.55rem 0.9rem;
+      font: inherit;
+      font-family: ui-sans-serif, system-ui, sans-serif;
+      font-size: 0.95rem;
+    }
+    .chip {
+      border: 1px solid var(--line);
+      background: var(--chip);
+      color: var(--ink);
+      border-radius: 999px;
+      padding: 0.38rem 0.75rem;
+      font-family: ui-sans-serif, system-ui, sans-serif;
+      font-size: 0.82rem;
+      cursor: pointer;
+    }
+    .chip.active {
+      background: var(--ink);
+      color: var(--paper);
+      border-color: var(--ink);
+    }
+    main {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 1.2rem 1.4rem 4rem;
+    }
+    .count {
+      font-family: ui-sans-serif, system-ui, sans-serif;
+      color: var(--muted);
+      font-size: 0.9rem;
+      margin: 0 0 1rem;
+    }
+    .grid {
+      display: grid;
+      gap: 1.1rem;
+      grid-template-columns: 1fr;
+    }
+    @media (min-width: 740px) {
+      .grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (min-width: 1100px) {
+      .grid { grid-template-columns: 1fr 1fr 1fr; }
+    }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+    }
+    .photos {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+      background: #d9d0c0;
+      min-height: 170px;
+    }
+    .photos.one { grid-template-columns: 1fr; }
+    .photos img {
+      width: 100%;
+      height: 190px;
+      object-fit: cover;
+      display: block;
+      cursor: zoom-in;
+      background: #cfc6b6;
+    }
+    .photos.one img { height: 230px; }
+    .body { padding: 0.95rem 1rem 1.1rem; flex: 1; display: flex; flex-direction: column; }
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+      margin-bottom: 0.45rem;
+    }
+    .badge {
+      font-family: ui-sans-serif, system-ui, sans-serif;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      border-radius: 999px;
+      padding: 0.18rem 0.5rem;
+    }
+    .identified { background: #d7eee2; color: var(--ok); }
+    .guess { background: #f3e3c8; color: var(--guess); }
+    .safety { background: #f8d5d4; color: var(--warn); }
+    h2 {
+      font-size: 1.18rem;
+      margin: 0 0 0.25rem;
+      line-height: 1.2;
+    }
+    .what {
+      margin: 0 0 0.7rem;
+      color: var(--muted);
+    }
+    dl {
+      margin: 0 0 0.7rem;
+      display: grid;
+      grid-template-columns: 7.2rem 1fr;
+      gap: 0.22rem 0.5rem;
+      font-family: ui-sans-serif, system-ui, sans-serif;
+      font-size: 0.84rem;
+    }
+    dt { color: var(--muted); }
+    dd { margin: 0; }
+    .use {
+      font-size: 0.92rem;
+      margin: 0;
+      padding-top: 0.35rem;
+      border-top: 1px dashed var(--line);
+    }
+    footer {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 0 1.4rem 2.5rem;
+      color: var(--muted);
+      font-family: ui-sans-serif, system-ui, sans-serif;
+      font-size: 0.85rem;
+    }
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(18, 14, 10, 0.88);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 50;
+      padding: 1.5rem;
+    }
+    .lightbox.open { display: flex; }
+    .lightbox img {
+      max-width: min(96vw, 1100px);
+      max-height: 90vh;
+      border-radius: 8px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.45);
+    }
+    .lightbox .cap {
+      position: absolute;
+      bottom: 1rem;
+      left: 50%;
+      transform: translateX(-50%);
+      color: #f3eee4;
+      font-family: ui-sans-serif, system-ui, sans-serif;
+      font-size: 0.85rem;
+    }
+    @media print {
+      .toolbar, .lightbox { display: none !important; }
+      .card { break-inside: avoid; box-shadow: none; }
+      header.hero { padding-top: 0; }
+    }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <p class="kicker">Free giveaway · Box 1</p>
+    <h1>Electronics surplus catalogue</h1>
+    <p class="lede">
+      Identified from the photos in <span class="mono">box1-pics</span>.
+      Labels and datasheets were used where they were readable.
+      Anything uncertain is marked <strong>best guess</strong>.
+      Parts are 2006–2012 factory surplus, offered as-is.
+    </p>
+    <div class="banner">
+      <div class="note">
+        <strong>How to use this list</strong>
+        Click a photo to enlarge. Search by part number or filter by category.
+        Quantities are what the original packs say — the remaining count in the box may be lower.
+      </div>
+      <div class="warn-note">
+        <strong>Do not use the Li-ion packs</strong>
+        The pouch cells are dated May 2010. Recycle them. Do not charge or install them.
+      </div>
+    </div>
+  </header>
+
+  <div class="toolbar">
+    <div class="toolbar-inner">
+      <input id="search" type="search" placeholder="Search name, part number, use…" />
+      <button class="chip active" data-cat="all">All</button>
+      <button class="chip" data-cat="semiconductors">Semiconductors</button>
+      <button class="chip" data-cat="ics">ICs &amp; memory</button>
+      <button class="chip" data-cat="passives">Passives</button>
+      <button class="chip" data-cat="connectors">Connectors</button>
+      <button class="chip" data-cat="opto">Opto</button>
+      <button class="chip" data-cat="timing">Crystals</button>
+      <button class="chip" data-cat="power">Power</button>
+      <button class="chip" data-cat="misc">Hardware</button>
+    </div>
+  </div>
+
+  <main>
+    <p class="count" id="count"></p>
+    <section class="grid" id="grid"></section>
+  </main>
+
+  <footer>
+    Catalogue built from iPhone photos taken 17 Sep 2026. Identifications are for hobby / educational giveaway use, not a guarantee of authenticity, remaining quantity, or electrical condition. Moisture-sensitive ICs in opened bags may need baking before reflow.
+  </footer>
+
+  <div class="lightbox" id="lightbox" title="Click to close">
+    <img id="lightbox-img" alt="" />
+    <div class="cap" id="lightbox-cap"></div>
+  </div>
+
+  <script>
+    const ITEMS = [
+      {
+        id: "stth4r02",
+        cat: "semiconductors",
+        conf: "identified",
+        name: "ST ultrafast recovery diode",
+        what: "A surface-mount rectifier that switches very quickly. Used as a freewheel / snubber / polarity-protection diode in switch-mode supplies.",
+        part: "STTH4R02B-TR",
+        mfr: "STMicroelectronics",
+        specs: "200 V, 4 A, ~16 ns recovery, DPAK (TO-252). Marking STTH 4R02.",
+        qty: "2,500 labeled (full reel)",
+        date: "18 Jan 2008",
+        use: "Handy for power-supply repair and DIY DC/DC work. Needs SMD soldering.",
+        photos: ["IMG_3808", "IMG_3809", "IMG_3810"]
+      },
+      {
+        id: "xtal18432",
+        cat: "timing",
+        conf: "identified",
+        name: "18.432 MHz SMD crystal",
+        what: "A metal-can quartz crystal that sets a precise clock. 18.432 MHz is a classic UART / baud-rate frequency.",
+        part: "18.432000F-S4902",
+        mfr: "Hooray (Hong Kong)",
+        specs: "18.432000 MHz, HC-49/USM (SMD gull-wing), 16 pF load, ±30 ppm.",
+        qty: "1,000 labeled",
+        date: "23 Jan 2008",
+        use: "Serial ports, older MCU clocks, radio / modem boards.",
+        photos: ["IMG_3811", "IMG_3812"]
+      },
+      {
+        id: "xtal25",
+        cat: "timing",
+        conf: "identified",
+        name: "25.000 MHz SMD crystal",
+        what: "A 25 MHz quartz crystal in the same SMD metal can as the 18.432 MHz reel. Standard Ethernet / MCU clock frequency.",
+        part: "25.000000F-S4907",
+        mfr: "Hooray (Hong Kong)",
+        specs: "25.000000 MHz, HC-49/USM, 16 pF load, ±30 ppm. KVE / RoHS reel.",
+        qty: "1,000 labeled",
+        date: "2 Jan 2008",
+        use: "Ethernet PHYs, 25 MHz MCU references, general clocking.",
+        photos: ["IMG_3814"]
+      },
+      {
+        id: "lipo",
+        cat: "power",
+        conf: "identified",
+        safety: true,
+        name: "Li-ion pouch cells — recycle only",
+        what: "Single-cell lithium-ion packs with a red/black lead and a small white connector. Dated 2010, so they are far past safe service life.",
+        part: "JN1003450 (1S pouch)",
+        mfr: "JingNeng Battery",
+        specs: "3.7 V, 1950 mAh, Li-ion, IEC 62133 / UL 1642 marks. Several packs in bubble wrap.",
+        qty: "Several (at least 3 photographed)",
+        date: "May 2010",
+        use: "Do not charge or install. Treat as e-waste / battery recycling only.",
+        photos: ["IMG_3815"]
+      },
+      {
+        id: "io-tray",
+        cat: "connectors",
+        conf: "guess",
+        name: "I/O connector tray (IDC + D-sub)",
+        what: "A molded tray of panel / cable connectors: stacked black IDC ribbon connectors plus a 9-pin and a 15-pin D-sub, some on metal hardware with jack screws.",
+        part: "Tray molded 8646-3164",
+        mfr: "Unknown (tray lot)",
+        specs: "Mix of 2-row IDC (looks like 40-pin class) and DE-9 / DA-15 D-subs.",
+        qty: "One tray, several connectors",
+        date: "Unknown",
+        use: "PC / industrial rear-panel I/O, ribbon-cable interconnects, D-sub repair.",
+        photos: ["IMG_3816"]
+      },
+      {
+        id: "panasonic-fm",
+        cat: "passives",
+        conf: "identified",
+        name: "Panasonic 100 µF / 10 V electrolytics",
+        what: "Small radial aluminium capacitors on ammo tape. Low-ESR FM series — the everyday ‘bypass the 5 V/3.3 V rail’ size.",
+        part: "EEUFM1A101H",
+        mfr: "Panasonic",
+        specs: "100 µF, 10 V, 105 °C, FM series, through-hole radial. Pack label qty 2,000.",
+        qty: "2,000 labeled",
+        date: "Date code 0801 (Jan 2008)",
+        use: "Through-hole power decoupling. Old but a very useful value if you reform / test them.",
+        photos: ["IMG_3817", "IMG_3818"]
+      },
+      {
+        id: "lightpipes",
+        cat: "opto",
+        conf: "guess",
+        name: "Clear LED light pipes",
+        what: "A bulk bag of transparent plastic light guides. They take light from a PCB LED and pipe it to a front panel. Two shapes in the sample: a short round stem and a longer T-shaped pipe.",
+        part: "Unlabeled bag",
+        mfr: "Unknown",
+        specs: "Clear molded light pipes / light guides. Large bag.",
+        qty: "Bulk bag (hundreds)",
+        date: "Unknown",
+        use: "Front-panel indicators on enclosures when the LED sits on the PCB.",
+        photos: ["IMG_3819"]
+      },
+      {
+        id: "piher",
+        cat: "passives",
+        conf: "identified",
+        name: "Piher 10 kΩ trimmer pots",
+        what: "Little 10 mm carbon trimmers you adjust with a screwdriver. Linear 10 k, ±20 %. Very common for analog calibration.",
+        part: "PT10MV10-103A2020",
+        mfr: "Piher (via Ecomal)",
+        specs: "10 kΩ ±20 %, 0.15 W, carbon, single-turn, through-hole, top adjust, ~10 mm body.",
+        qty: "500 labeled",
+        date: "16 Apr 2008",
+        use: "Volume / bias / sensor calibration on through-hole boards.",
+        photos: ["IMG_3820", "IMG_3821", "IMG_3833"]
+      },
+      {
+        id: "amp-latch",
+        cat: "connectors",
+        conf: "identified",
+        name: "14-pin right-angle IDC headers",
+        what: "Black low-profile box headers for 14-way ribbon cable, right-angle through-hole, with ejector latches. Packed in yellow Tyco tubes.",
+        part: "1761607-5",
+        mfr: "Tyco / AMP (TE Connectivity)",
+        specs: "AMP-LATCH, 14 pos, 2×7, 2.54 mm, right-angle, long latches, ~1 A / 250 V. 20 pcs per tube.",
+        qty: "Several tubes × 20",
+        date: "Unknown (UL/CSA marked)",
+        use: "Programming headers, ribbon I/O, old disk / industrial cables.",
+        photos: ["IMG_3822"]
+      },
+      {
+        id: "sram",
+        cat: "ics",
+        conf: "identified",
+        name: "Samsung 512 KB SRAM",
+        what: "Static RAM chips in antistatic sticks. 512K × 8 (4 Mbit), 70 ns. The marking is T1E — an earlier sibling of the better-documented T1F family.",
+        part: "K6X4008T1E-GF70",
+        mfr: "Samsung",
+        specs: "512K×8 CMOS SRAM, 70 ns, 32-pin SOP/sTSOP, likely 3.3 V class. Date code 429, Korea.",
+        qty: "Multiple sticks (STB 450 tubes)",
+        date: "Week 29, 2004 (chip date code)",
+        use: "Retro computing, 8-bit/16-bit memory expansion, battery-backed RAM experiments. Needs fine-pitch SMD work.",
+        photos: ["IMG_3823", "IMG_3824"]
+      },
+      {
+        id: "smd-stick",
+        cat: "passives",
+        conf: "guess",
+        name: "Long stick of tiny SMD chips",
+        what: "A very long plastic stick of minute grey surface-mount parts. No label on the stick. Size and packing match 0402/0603 chip resistors or capacitors.",
+        part: "Unlabeled",
+        mfr: "Unknown",
+        specs: "SMD chip components in stick packaging. Value not readable from the photo.",
+        qty: "One long stick (many hundreds)",
+        date: "Unknown",
+        use: "Only useful after measuring a sample with an LCR meter / continuity test.",
+        photos: ["IMG_3825"]
+      },
+      {
+        id: "hsp50216",
+        cat: "ics",
+        conf: "identified",
+        name: "Intersil 4-channel digital downconverter",
+        what: "A serious radio/DSP chip: four independent digital receivers (mixers, NCO, CIC/FIR filters, AGC). Originally for cellular base-stations and software radio. These bags were inventoried for Vaisala.",
+        part: "HSP50216KI / HSP50216KIZ",
+        mfr: "Intersil (now Renesas)",
+        specs: "Quad programmable DDC, 16-bit IF in, up to 70 MSPS, 196-ball BGA, 12×12 mm, MSL 3. Industrial −40 to +85 °C.",
+        qty: "18 pcs + 150 pcs labeled (two bags)",
+        date: "2009 origin / 2012 bag dates",
+        use: "Advanced SDR / IF processing. Fine-pitch BGA — not a beginner part. Opened MSL bags may need a bake before soldering.",
+        photos: ["IMG_3826", "IMG_3827", "IMG_3828", "IMG_3831", "IMG_3832"]
+      },
+      {
+        id: "lis3",
+        cat: "ics",
+        conf: "identified",
+        name: "ST 3-axis digital accelerometer",
+        what: "A MEMS motion sensor that reports X/Y/Z acceleration over I²C or SPI. Ancestor of the chips in phones and game controllers. Comes in Farnell static bags.",
+        part: "LIS3LV02DL",
+        mfr: "STMicroelectronics",
+        specs: "±2 g / ±6 g selectable, 2.16–3.6 V, I²C/SPI, 12/16-bit, LGA-16. Up to 640 Hz bandwidth.",
+        qty: "At least 2 bags × 50 (100+ labeled)",
+        date: "Jul–Oct 2009",
+        use: "Tilt, vibration, free-fall, motion-wake projects. Tiny LGA package — hot-air / stencil recommended.",
+        photos: ["IMG_3829", "IMG_3830"]
+      },
+      {
+        id: "dsub-hw",
+        cat: "misc",
+        conf: "guess",
+        name: "D-sub shells and hardware",
+        what: "A mixed bag of metal backshells, black plastic hoods, and small mechanical bits. Looks like the accessories that go around D-sub connectors, not the connectors themselves.",
+        part: "Unlabeled bag",
+        mfr: "Unknown",
+        specs: "Metal D-sub covers / strain-relief hardware and plastic housings.",
+        qty: "One bag, mixed",
+        date: "Unknown",
+        use: "Finishing cable assemblies, replacing broken D-sub hoods.",
+        photos: ["IMG_3834"]
+      },
+      {
+        id: "gold-clips",
+        cat: "misc",
+        conf: "guess",
+        name: "Gold-plated spring clips",
+        what: "A bag of small gold-coloured metal clips. Shape matches PCB EMI shield clips, fuse clips, or spring battery contacts — not ICs.",
+        part: "Unlabeled bag",
+        mfr: "Unknown",
+        specs: "Gold-plated formed metal clips, bulk.",
+        qty: "Bulk bag",
+        date: "Unknown",
+        use: "Shield cans, fuse holders, or spring contacts — check a piece against your board before committing.",
+        photos: ["IMG_3835"]
+      },
+      {
+        id: "elna-rjh",
+        cat: "passives",
+        conf: "identified",
+        name: "ELNA 3900 µF / 10 V capacitors",
+        what: "Chunky purple radial electrolytics. High capacitance at low voltage — typical for 5 V bulk storage after a regulator.",
+        part: "ELNA RJH 10 V 3900 µF",
+        mfr: "ELNA",
+        specs: "3900 µF, 10 V, RJH series (low-impedance class), 105 °C, through-hole. Date code 0402 on one can.",
+        qty: "One bag (dozens)",
+        date: "Week 02, 2004 on sample",
+        use: "Power-supply reservoirs, audio/amp rails, repair of 5 V bulk caps. Test ESR before trusting vintage electrolytics.",
+        photos: ["IMG_3835", "IMG_3836", "IMG_3838", "IMG_3839"]
+      },
+      {
+        id: "dsub-tray",
+        cat: "connectors",
+        conf: "identified",
+        name: "PCB D-sub connectors (9- and 15-pin)",
+        what: "A full plastic tray of solder-in D-sub sockets. The tray mixes DE-9 (serial/RS-232 look) and 15-pin parts (VGA HD-15 / game-port class).",
+        part: "Unlabeled tray",
+        mfr: "Unknown",
+        specs: "Through-hole D-sub, mixed 9-pin and 15-pin, metal shells.",
+        qty: "One tray, ~60+ pieces",
+        date: "Unknown",
+        use: "Serial, VGA, joystick, and general D-sub panel I/O on PCBs.",
+        photos: ["IMG_3837"]
+      },
+      {
+        id: "red-ceramic",
+        cat: "passives",
+        conf: "guess",
+        name: "Red radial ceramic capacitors",
+        what: "A bag of small red dipped discs with two leads. Marking on the sample reads 220, which in EIA code is usually 22 pF. They could also be a nearby ceramic value — measure one to be sure.",
+        part: "Marked 220 on body",
+        mfr: "Unknown",
+        specs: "Radial dipped ceramic (MLCC/disc). Best guess: 22 pF C0G/NP0. Confirm with a meter.",
+        qty: "One bag (many tens)",
+        date: "Unknown",
+        use: "Crystal load caps, RF / oscillator work — but only after you verify the value.",
+        photos: ["IMG_3840", "IMG_3841"]
+      },
+      {
+        id: "osram-led",
+        cat: "opto",
+        conf: "identified",
+        name: "OSRAM hyper-red 1206 LEDs",
+        what: "A reel of tiny red SMD indicator LEDs. Wide viewing angle, diffused 1206 package. Discontinued ChipLED series, still perfectly usable as panel indicators.",
+        part: "LH N974 (bin L-1 0-20)",
+        mfr: "OSRAM Opto Semiconductors",
+        specs: "Hyper-red, 645 nm (peak 660 nm), 1206, ~1.8 V @ 20 mA, ~160° viewing angle. Qty 3,000 on reel.",
+        qty: "3,000 labeled",
+        date: "Reel 22 Aug 2006; D/C 0613",
+        use: "SMD status LEDs. Pair with the light pipes if you want panel indicators.",
+        photos: ["IMG_3842", "IMG_3843"]
+      },
+      {
+        id: "wago",
+        cat: "connectors",
+        conf: "identified",
+        name: "WAGO 4-pole PCB terminals",
+        what: "A WAGO carton of spring-clamp PCB terminal blocks. The loose sample on the box is a grey 4-pin through-hole terminal. Label reads 736-404 (qty 220); that series is normally an orange double-deck block, so the first digit might be 236-404 (the common grey 4-pole). Either way: WAGO cage-clamp PCB terminals, 4 poles.",
+        part: "736-404 on label (possibly 236-404)",
+        mfr: "WAGO",
+        specs: "4-pole PCB terminal, ~300 V class, made in Switzerland per label. Qty 220.",
+        qty: "220 labeled",
+        date: "Batch 090713 on label",
+        use: "Screwless wire-to-board on industrial / power PCBs.",
+        photos: ["IMG_3844"]
+      },
+      {
+        id: "kycon-rj12",
+        cat: "connectors",
+        conf: "identified",
+        name: "Kycon 6P6C modular jacks (RJ12)",
+        what: "Right-angle PCB telephone / data jacks. 6 positions, 6 contacts — the RJ12 / RJ25 size, not full RJ45. Black low-profile housing with panel stops.",
+        part: "GDL-A-66 / GDL-A-66 KY",
+        mfr: "Kycon",
+        specs: "6P6C, right-angle through-hole, unshielded, panel stops, gold-flash contacts, 1.5 A / 125 V class.",
+        qty: "200 labeled",
+        date: "17 Feb 2012",
+        use: "Phone, RS-232 on RJ12, proprietary 6-pin jacks. Will not accept an 8-pin RJ45 plug properly.",
+        photos: ["IMG_3845", "IMG_3846"]
+      },
+      {
+        id: "green-term",
+        cat: "connectors",
+        conf: "guess",
+        name: "Green 4-way screw terminals",
+        what: "Two bags of the classic green PCB screw terminal blocks. Sample is 4 positions. Pitch looks like 5.08 mm (the usual ‘Arduino shield’ / industrial pitch), Phoenix Contact style.",
+        part: "Unlabeled bags",
+        mfr: "Unknown (Phoenix-style)",
+        specs: "4-pole screw terminal, through-hole, green. Pitch visually ~5.0/5.08 mm.",
+        qty: "Two bags (many tens)",
+        date: "Unknown",
+        use: "Power and signal screw wiring on hobby and industrial boards.",
+        photos: ["IMG_3847"]
+      },
+      {
+        id: "molex-kk",
+        cat: "connectors",
+        conf: "identified",
+        name: "Molex KK 15-pin power headers",
+        what: "White single-row pin headers on a 3.96 mm (0.156\") pitch — the chunky Molex KK power family, not the little 2.54 mm Dupont pins. 15 circuits, vertical, tin plated.",
+        part: "26-60-2150 / 533-155-50-LF",
+        mfr: "Molex (pack labeled 533-155-50-LF)",
+        specs: "KK 396, 15 pos, 1 row, 3.96 mm, 7 A / 250 V, through-hole, tin. Qty 250.",
+        qty: "250 labeled",
+        date: "11 Feb 2011",
+        use: "Disk-drive / PSU / appliance wire-to-board. Needs matching 3.96 mm housings, not 2.54 mm Dupont.",
+        photos: ["IMG_3847", "IMG_3848"]
+      },
+      {
+        id: "idc-latches",
+        cat: "connectors",
+        conf: "guess",
+        name: "Beige IDC box headers with ejector latches",
+        what: "Cream/beige shrouded headers with a latch at each end. These are the PCB side of a ribbon-cable connection (IDE / SCSI look). Length is in the 40-pin or 50-pin class — count the pins on a piece to be sure.",
+        part: "Unlabeled tray",
+        mfr: "Unknown",
+        specs: "Through-hole shrouded IDC header, dual ejector latches, 2.54 mm class. Best guess: 40-pin (2×20) or 50-pin (2×25).",
+        qty: "One tray, ~16–20 pieces",
+        date: "Unknown",
+        use: "Ribbon-cable board connectors. Pair with IDC sockets / ribbon.",
+        photos: ["IMG_3849"]
+      }
+    ];
+
+    const grid = document.getElementById("grid");
+    const countEl = document.getElementById("count");
+    const search = document.getElementById("search");
+    let cat = "all";
+
+    function render() {
+      const q = search.value.trim().toLowerCase();
+      const shown = ITEMS.filter((it) => {
+        if (cat !== "all" && it.cat !== cat) return false;
+        if (!q) return true;
+        return [it.name, it.what, it.part, it.mfr, it.specs, it.use, it.id]
+          .join(" ").toLowerCase().includes(q);
+      });
+      countEl.textContent = shown.length === ITEMS.length
+        ? ITEMS.length + " lots in Box 1"
+        : shown.length + " of " + ITEMS.length + " lots";
+      grid.innerHTML = shown.map((it) => {
+        const n = it.photos.length;
+        const photoClass = n === 1 ? "photos one" : "photos";
+        const imgs = it.photos.slice(0, 4).map((p) =>
+          `<img src="thumbs/${p}.jpg" alt="${it.name}" data-full="box1-pics/${p}.JPEG" data-cap="${p} · ${it.part}" />`
+        ).join("");
+        const badges = [
+          `<span class="badge ${it.conf}">${it.conf === "identified" ? "Identified" : "Best guess"}</span>`,
+          it.safety ? `<span class="badge safety">Do not use</span>` : ""
+        ].join("");
+        return `<article class="card">
+          <div class="${photoClass}">${imgs}</div>
+          <div class="body">
+            <div class="meta">${badges}</div>
+            <h2>${it.name}</h2>
+            <p class="what">${it.what}</p>
+            <dl>
+              <dt>Part</dt><dd class="part">${it.part}</dd>
+              <dt>Maker</dt><dd>${it.mfr}</dd>
+              <dt>Specs</dt><dd>${it.specs}</dd>
+              <dt>Quantity</dt><dd>${it.qty}</dd>
+              <dt>Date</dt><dd>${it.date}</dd>
+            </dl>
+            <p class="use"><strong>Good for.</strong> ${it.use}</p>
+          </div>
+        </article>`;
+      }).join("");
+    }
+
+    document.querySelectorAll(".chip").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        document.querySelectorAll(".chip").forEach((b) => b.classList.remove("active"));
+        btn.classList.add("active");
+        cat = btn.dataset.cat;
+        render();
+      });
+    });
+    search.addEventListener("input", render);
+
+    const lb = document.getElementById("lightbox");
+    const lbImg = document.getElementById("lightbox-img");
+    const lbCap = document.getElementById("lightbox-cap");
+    document.addEventListener("click", (e) => {
+      const img = e.target.closest(".photos img");
+      if (img) {
+        lbImg.src = img.dataset.full;
+        lbImg.alt = img.alt;
+        lbCap.textContent = img.dataset.cap;
+        lb.classList.add("open");
+      } else if (e.target === lb || e.target === lbImg) {
+        lb.classList.remove("open");
+        lbImg.src = "";
+      }
+    });
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") lb.classList.remove("open");
+    });
+
+    render();
+  </script>
+</body>
+</html>
