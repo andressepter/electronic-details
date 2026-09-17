@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Box 1 — Electronics Giveaway Catalogue</title>
+  <title>Box 1 &amp; Box 2 — Electronics Giveaway Catalogue</title>
   <style>
     :root {
       --paper: #f3eee4;
@@ -191,6 +191,46 @@
     .identified { background: #d7eee2; color: var(--ok); }
     .guess { background: #f3e3c8; color: var(--guess); }
     .safety { background: #f8d5d4; color: var(--warn); }
+    .box2-badge { background: #f3d4c0; color: var(--copper-d); }
+    .card.box2 { border-color: #e0b090; }
+    .box-head, .box-split {
+      grid-column: 1 / -1;
+    }
+    .box-head {
+      margin: 0.15rem 0 0.1rem;
+      padding: 0.55rem 0.15rem 0.2rem;
+      border-bottom: 1px solid var(--line);
+    }
+    .box-head .kicker { margin: 0 0 0.15rem; }
+    .box-head h3 {
+      margin: 0;
+      font-size: 1.35rem;
+    }
+    .box-split {
+      margin: 0.6rem 0 0.15rem;
+      padding: 1.2rem 1.25rem 1.1rem;
+      background: #2a2118;
+      color: #f3eee4;
+      border-radius: 16px;
+      border: 3px solid var(--copper);
+      box-shadow: 0 0 0 5px rgba(196, 92, 38, 0.2);
+    }
+    .box-split .kicker {
+      color: #e8894a;
+      margin: 0 0 0.28rem;
+    }
+    .box-split h3 {
+      margin: 0 0 0.3rem;
+      font-size: clamp(1.4rem, 3vw, 1.85rem);
+      letter-spacing: -0.02em;
+    }
+    .box-split p {
+      margin: 0;
+      max-width: 70ch;
+      color: #d4c8b6;
+      font-family: ui-sans-serif, system-ui, sans-serif;
+      font-size: 0.92rem;
+    }
     h2 {
       font-size: 1.18rem;
       margin: 0 0 0.25rem;
@@ -253,29 +293,31 @@
     @media print {
       .toolbar, .lightbox { display: none !important; }
       .card { break-inside: avoid; box-shadow: none; }
+      .box-split { break-inside: avoid; }
       header.hero { padding-top: 0; }
     }
   </style>
 </head>
 <body>
   <header class="hero">
-    <p class="kicker">Free giveaway · Box 1</p>
+    <p class="kicker">Free giveaway · Box 1 + Box 2</p>
     <h1>Electronics surplus catalogue</h1>
     <p class="lede">
-      Identified from the photos in <span class="mono">box1-pics</span>.
+      Identified from the photos in <span class="mono">box1-pics</span> and <span class="mono">box2-pics</span>.
       Labels and datasheets were used where they were readable.
       Anything uncertain is marked <strong>best guess</strong>.
       Parts are 2006–2012 factory surplus, offered as-is.
+      Box 2 was added after Box 1 — it has its own section below.
     </p>
     <div class="banner">
       <div class="note">
         <strong>How to use this list</strong>
-        Click a photo to enlarge. Search by part number or filter by category.
+        Click a photo to enlarge. Search by part number or filter by category or box.
         Quantities are what the original packs say — the remaining count in the box may be lower.
       </div>
       <div class="warn-note">
         <strong>Do not use the Li-ion packs</strong>
-        The pouch cells are dated May 2010. Recycle them. Do not charge or install them.
+        JingNeng (Box 1) and Yuntong (Box 2) pouch cells are dated 2010. Recycle them. Do not charge or install them.
       </div>
     </div>
   </header>
@@ -283,7 +325,10 @@
   <div class="toolbar">
     <div class="toolbar-inner">
       <input id="search" type="search" placeholder="Search name, part number, use…" />
-      <button class="chip active" data-cat="all">All</button>
+      <button class="chip active" data-box="all">All boxes</button>
+      <button class="chip" data-box="1">Box 1</button>
+      <button class="chip" data-box="2">Box 2</button>
+      <button class="chip active" data-cat="all">All types</button>
       <button class="chip" data-cat="semiconductors">Semiconductors</button>
       <button class="chip" data-cat="ics">ICs &amp; memory</button>
       <button class="chip" data-cat="passives">Passives</button>
@@ -301,7 +346,7 @@
   </main>
 
   <footer>
-    Catalogue built from iPhone photos taken 17 Sep 2026. Identifications are for hobby / educational giveaway use, not a guarantee of authenticity, remaining quantity, or electrical condition. Moisture-sensitive ICs in opened bags may need baking before reflow.
+    Catalogue built from iPhone photos taken 17 Sep 2026. Box 2 was added after Box 1. Identifications are for hobby / educational giveaway use, not a guarantee of authenticity, remaining quantity, or electrical condition. Moisture-sensitive ICs in opened bags may need baking before reflow.
   </footer>
 
   <div class="lightbox" id="lightbox" title="Click to close">
@@ -553,15 +598,15 @@
       {
         id: "red-ceramic",
         cat: "passives",
-        conf: "guess",
-        name: "Red radial ceramic capacitors",
-        what: "A bag of small red dipped discs with two leads. Marking on the sample reads 220, which in EIA code is usually 22 pF. They could also be a nearby ceramic value — measure one to be sure.",
-        part: "Marked 220 on body",
-        mfr: "Unknown",
-        specs: "Radial dipped ceramic (MLCC/disc). Best guess: 22 pF C0G/NP0. Confirm with a meter.",
+        conf: "identified",
+        name: "Littelfuse 22 V radial MOV",
+        what: "A bag of small red dipped discs that look like ceramic capacitors. The body is branded P22Z1 with date code 0818 — that is the Littelfuse ZA-series marking for V22ZA1P, a 7 mm metal-oxide varistor, not a 22 pF cap.",
+        part: "V22ZA1P (branded P22Z1)",
+        mfr: "Littelfuse (ZA series)",
+        specs: "7 mm radial MOV. 14 V AC / 18 V DC continuous, 22 V nominal varistor (19.8–24.2 V), clamps ~43 V, 250 A surge, 0.9 J, ~2.4 nF typical.",
         qty: "One bag (many tens)",
-        date: "Unknown",
-        use: "Crystal load caps, RF / oscillator work — but only after you verify the value.",
+        date: "Week 18, 2008 (0818)",
+        use: "Low-voltage transient clamp on 12 V-class DC or 14 V AC rails, relays, solenoids, automotive/telecom boards. Not a capacitor, and not a mains MOV.",
         photos: ["IMG_3840", "IMG_3841"]
       },
       {
@@ -647,6 +692,142 @@
         date: "Unknown",
         use: "Ribbon-cable board connectors. Pair with IDC sockets / ribbon.",
         photos: ["IMG_3849"]
+      },
+      {
+        id: "urt-lcd",
+        box: 2,
+        cat: "opto",
+        conf: "identified",
+        name: "URT 16×2 yellow-green LCDs",
+        what: "A factory carton of the classic Arduino-size character LCD: two lines of 16 characters, yellow-green STN with LED backlight, 16-pin single-row header. Packed in pink anti-static bags in a cardboard grid. Carton is marked LCD.",
+        part: "UMSH-3229JD-YG",
+        mfr: "United Radiant Technology (U.R.T.)",
+        specs: "16×2 character LCD, yellow-green, HD44780-class 16-pin interface, 5 V typical. PCB 7133070004. Carton G853001000, 82 pcs.",
+        qty: "82 labeled",
+        date: "Lot 08010016 (16 Jan 2008)",
+        use: "MCU projects, status panels, retro instruments. Same footprint as the usual 16×2 hobby module.",
+        photos: ["IMG_3850", "IMG_3851", "IMG_3852", "IMG_3853"]
+      },
+      {
+        id: "white-headers",
+        box: 2,
+        cat: "connectors",
+        conf: "guess",
+        name: "Mixed white 2.54 mm pin headers",
+        what: "A 15-compartment tray of natural-white shrouded wire-to-board headers. Mixed pin counts (about 2- through 8-pin), mostly right-angle with a friction-lock tab. The shape is the JST XH / Molex KK 2.54 mm family — not the chunky 3.96 mm KK from Box 1.",
+        part: "Unlabeled tray, mixed counts",
+        mfr: "Unknown (JST-XH / Molex KK class)",
+        specs: "White nylon shrouded headers, 2.54 mm pitch, polarised, through-hole. Mixed straight and right-angle.",
+        qty: "One tray (hundreds)",
+        date: "Unknown",
+        use: "Board-to-wire on 2.54 mm housings. Count pins on a piece before designing a footprint.",
+        photos: ["IMG_3854", "IMG_3855"]
+      },
+      {
+        id: "mixed-16x2",
+        box: 2,
+        cat: "opto",
+        conf: "identified",
+        name: "Mixed 16×2 LCD carton (Newhaven + Densitron)",
+        what: "Cartons marked Number LCD holding two families in silver bags. Newer boards are Newhaven 16×2 character modules (yellow-green LED backlight, HD44780-class). Older boards are Densitron 2227-5327 modules with a COB controller plus OKI MSM5839 LCD segment drivers — 14-pin, same 16×2 board size, date-coded 1996. Treat the Densitron pinout as not a drop-in HD44780 until you check it.",
+        part: "NHD-0216AZ-FL-YBW and Densitron 2227-5327",
+        mfr: "Newhaven Display / Densitron",
+        specs: "Newhaven: 16×2 STN yellow-green, transflective, 5 V, ST7066U/HD44780 class, dated 8 Oct 2008. Densitron: 14-pin, PCB 342-H1-00, OKI MSM5839, Taiwan 9608/9609.",
+        qty: "Two cartons, many tens (silver bags)",
+        date: "1996 Densitron / 2008 Newhaven",
+        use: "Newhaven: standard 16×2 MCU display. Densitron: salvage / experiment — confirm the interface before wiring 5 V.",
+        photos: ["IMG_3856", "IMG_3858", "IMG_3859", "IMG_3860"]
+      },
+      {
+        id: "amp-m34",
+        box: 2,
+        cat: "connectors",
+        conf: "identified",
+        name: "AMP M-series 34-pin PCB receptacles",
+        what: "Black through-hole backplane / drawer connectors with jackscrews and gold sockets in four rows. These are AMP M-series pin-and-socket receptacles, not ordinary D-subs. Made in Mexico, date code 0820.",
+        part: "AMP 213524-8",
+        mfr: "AMP / TE Connectivity",
+        specs: "M series, 34 positions, 4 rows, 3.81 mm (0.150\") pitch, female sockets, gold, through-hole, jackscrews + mating guides.",
+        qty: "One tray, ~10 pieces",
+        date: "Week 20, 2008 (0820)",
+        use: "Industrial / rack interconnects. Needs the matching M-series plug and contacts — not a 2.54 mm header.",
+        photos: ["IMG_3863"]
+      },
+      {
+        id: "hdsp-7seg",
+        box: 2,
+        cat: "opto",
+        conf: "guess",
+        name: "Avago 7-segment LED digits",
+        what: "A tray of grey-face single-digit 7-segment LEDs, 10-pin DIP. Sample side mark is inverted in the photo; readable bits are the HP/Avago logo and date code 8833. Size and pinout match the HDSP-F / HDSP-550x family (about 10–14 mm character).",
+        part: "Avago/HP HDSP-class (marking 8833)",
+        mfr: "Avago / HP",
+        specs: "Single-digit 7-segment, 10-pin DIP, grey face, right-hand decimal. Exact HDSP number not confirmed from the inverted side print.",
+        qty: "One tray (several dozen)",
+        date: "Week 33, 2008 (8833)",
+        use: "Numeric panel readouts. Check common-anode vs common-cathode on a meter before wiring.",
+        photos: ["IMG_3864", "IMG_3865"]
+      },
+      {
+        id: "hlmp-2885",
+        box: 2,
+        cat: "opto",
+        conf: "identified",
+        name: "Avago green LED light bars",
+        what: "A bag of rectangular DIP light bars — a solid green glowing brick, not a 7-segment digit. These are the classic HP/Avago HLMP-2xxx annunciators used as panel status bars.",
+        part: "HLMP-2885",
+        mfr: "Avago / HP (Thailand)",
+        specs: "Green LED light bar, 8.89 × 19.05 mm, 16-pin DIP, ~565 nm, ~2.2 V @ 20 mA per segment, ~50–100 mcd typical. Date code 004 F3.",
+        qty: "One bag (~15–20)",
+        date: "Week 04, 2000 on sample (004)",
+        use: "Front-panel status, bar-graph segments, big on/off indicators. Drive with resistors; segments can be wired in series or parallel.",
+        photos: ["IMG_3866", "IMG_3867"]
+      },
+      {
+        id: "omron-my2",
+        box: 2,
+        cat: "power",
+        conf: "identified",
+        name: "Omron MY2P-D DPDT relays",
+        what: "Five ice-cube plug-in relays with the orange MY frame and a test button. Marked MY2P-D — 2-pole changeover with a built-in coil diode. Contacts are the 10 A class. Coil voltage is not on the photographed face; read it on the short side of a unit (often 24 V DC on this series).",
+        part: "MY2P-D",
+        mfr: "Omron (made in Indonesia)",
+        specs: "DPDT plug-in, 8 pins, diode across coil. Contacts 240 V AC / 28 V DC 10 A resistive, 1/6 HP 7 A general. Needs a PYF08 / PY08 socket.",
+        qty: "5 photographed",
+        date: "Unknown",
+        use: "Control-panel I/O, MCU-driven mains/DC switching via a socket. Confirm coil voltage before applying power.",
+        photos: ["IMG_3868", "IMG_3869"]
+      },
+      {
+        id: "molex-4pole",
+        box: 2,
+        cat: "connectors",
+        conf: "identified",
+        name: "Molex 4-pole PCB screw terminals",
+        what: "A Molex tray of black 4-position wire-to-board screw terminals. Rising-clamp screws, through-hole pins. The moulded tray number is 0380050042 — that is the pack, not necessarily the connector series. Pitch looks like the usual 5.00/5.08 mm Eurostyle.",
+        part: "Molex 4-pole (tray 0380050042)",
+        mfr: "Molex",
+        specs: "4-position PCB screw terminal, black, through-hole. Pitch visually ~5.0/5.08 mm. Exact series not on the parts.",
+        qty: "One tray (~30+ remaining)",
+        date: "Unknown",
+        use: "Power and signal screw wiring on through-hole boards. Measure pitch before matching a footprint.",
+        photos: ["IMG_3870"]
+      },
+      {
+        id: "yuntong-lipo",
+        box: 2,
+        cat: "power",
+        conf: "identified",
+        safety: true,
+        name: "Yuntong 3.7 V pouches — recycle only",
+        what: "A full compartment tray of white Li-ion pouch cells with a tiny 2-pin connector. Size code 573452 is about 5.7 × 34 × 52 mm. Dated 5 July 2010, so they are far past safe service life — same warning as the JingNeng packs in Box 1.",
+        part: "YT573452",
+        mfr: "Yuntong",
+        specs: "3.7 V Li-ion / Li-polymer pouch, ~1 Ah class from the size code. Red/black leads, small white connector. Date 100705.",
+        qty: "One tray (100+)",
+        date: "5 July 2010",
+        use: "Do not charge or install. Treat as e-waste / battery recycling only.",
+        photos: ["IMG_3871", "IMG_3872"]
       }
     ];
 
@@ -654,52 +835,94 @@
     const countEl = document.getElementById("count");
     const search = document.getElementById("search");
     let cat = "all";
+    let boxFilter = "all";
+
+    function boxOf(it) { return it.box || 1; }
+
+    function cardHTML(it) {
+      const n = it.photos.length;
+      const photoClass = n === 1 ? "photos one" : "photos";
+      const dir = boxOf(it) === 2 ? "box2-pics" : "box1-pics";
+      const imgs = it.photos.slice(0, 4).map((p) =>
+        `<img src="thumbs/${p}.jpg" alt="${it.name}" data-full="${dir}/${p}.JPEG" data-cap="${p} · ${it.part}" />`
+      ).join("");
+      const badges = [
+        `<span class="badge ${it.conf}">${it.conf === "identified" ? "Identified" : "Best guess"}</span>`,
+        boxOf(it) === 2 ? `<span class="badge box2-badge">Box 2</span>` : "",
+        it.safety ? `<span class="badge safety">Do not use</span>` : ""
+      ].join("");
+      return `<article class="card${boxOf(it) === 2 ? " box2" : ""}">
+        <div class="${photoClass}">${imgs}</div>
+        <div class="body">
+          <div class="meta">${badges}</div>
+          <h2>${it.name}</h2>
+          <p class="what">${it.what}</p>
+          <dl>
+            <dt>Part</dt><dd class="part">${it.part}</dd>
+            <dt>Maker</dt><dd>${it.mfr}</dd>
+            <dt>Specs</dt><dd>${it.specs}</dd>
+            <dt>Quantity</dt><dd>${it.qty}</dd>
+            <dt>Date</dt><dd>${it.date}</dd>
+          </dl>
+          <p class="use"><strong>Good for.</strong> ${it.use}</p>
+        </div>
+      </article>`;
+    }
+
+    const box1HTML = `<aside class="box-head">
+      <p class="kicker">Original catalogue</p>
+      <h3>Box 1</h3>
+    </aside>`;
+    const splitHTML = `<aside class="box-split">
+      <p class="kicker">Added later</p>
+      <h3>Box 2</h3>
+      <p>A second carton, photographed after Box 1 was already catalogued. Same 2006–2012 surplus, same giveaway rules. The Li-ion pouches here are also 2010 — recycle only.</p>
+    </aside>`;
 
     function render() {
       const q = search.value.trim().toLowerCase();
       const shown = ITEMS.filter((it) => {
         if (cat !== "all" && it.cat !== cat) return false;
+        if (boxFilter !== "all" && String(boxOf(it)) !== boxFilter) return false;
         if (!q) return true;
-        return [it.name, it.what, it.part, it.mfr, it.specs, it.use, it.id]
+        return [it.name, it.what, it.part, it.mfr, it.specs, it.use, it.id, "box " + boxOf(it)]
           .join(" ").toLowerCase().includes(q);
       });
-      countEl.textContent = shown.length === ITEMS.length
-        ? ITEMS.length + " lots in Box 1"
-        : shown.length + " of " + ITEMS.length + " lots";
-      grid.innerHTML = shown.map((it) => {
-        const n = it.photos.length;
-        const photoClass = n === 1 ? "photos one" : "photos";
-        const imgs = it.photos.slice(0, 4).map((p) =>
-          `<img src="thumbs/${p}.jpg" alt="${it.name}" data-full="box1-pics/${p}.JPEG" data-cap="${p} · ${it.part}" />`
-        ).join("");
-        const badges = [
-          `<span class="badge ${it.conf}">${it.conf === "identified" ? "Identified" : "Best guess"}</span>`,
-          it.safety ? `<span class="badge safety">Do not use</span>` : ""
-        ].join("");
-        return `<article class="card">
-          <div class="${photoClass}">${imgs}</div>
-          <div class="body">
-            <div class="meta">${badges}</div>
-            <h2>${it.name}</h2>
-            <p class="what">${it.what}</p>
-            <dl>
-              <dt>Part</dt><dd class="part">${it.part}</dd>
-              <dt>Maker</dt><dd>${it.mfr}</dd>
-              <dt>Specs</dt><dd>${it.specs}</dd>
-              <dt>Quantity</dt><dd>${it.qty}</dd>
-              <dt>Date</dt><dd>${it.date}</dd>
-            </dl>
-            <p class="use"><strong>Good for.</strong> ${it.use}</p>
-          </div>
-        </article>`;
-      }).join("");
+      const n1 = ITEMS.filter((it) => boxOf(it) === 1).length;
+      const n2 = ITEMS.filter((it) => boxOf(it) === 2).length;
+      if (shown.length === ITEMS.length) {
+        countEl.textContent = ITEMS.length + " lots · Box 1 (" + n1 + ") + Box 2 (" + n2 + ")";
+      } else {
+        countEl.textContent = shown.length + " of " + ITEMS.length + " lots";
+      }
+      const parts = [];
+      let lastBox = null;
+      const has1 = shown.some((it) => boxOf(it) === 1);
+      const has2 = shown.some((it) => boxOf(it) === 2);
+      if (has1 && has2) parts.push(box1HTML);
+      if (!has1 && has2) parts.push(splitHTML);
+      shown.forEach((it) => {
+        const b = boxOf(it);
+        if (has1 && has2 && lastBox === 1 && b === 2) parts.push(splitHTML);
+        lastBox = b;
+        parts.push(cardHTML(it));
+      });
+      grid.innerHTML = parts.join("");
     }
 
-    document.querySelectorAll(".chip").forEach((btn) => {
+    document.querySelectorAll(".chip[data-cat]").forEach((btn) => {
       btn.addEventListener("click", () => {
-        document.querySelectorAll(".chip").forEach((b) => b.classList.remove("active"));
+        document.querySelectorAll(".chip[data-cat]").forEach((b) => b.classList.remove("active"));
         btn.classList.add("active");
         cat = btn.dataset.cat;
+        render();
+      });
+    });
+    document.querySelectorAll(".chip[data-box]").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        document.querySelectorAll(".chip[data-box]").forEach((b) => b.classList.remove("active"));
+        btn.classList.add("active");
+        boxFilter = btn.dataset.box;
         render();
       });
     });
