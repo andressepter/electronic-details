@@ -15,8 +15,6 @@ Midagi broneerima ei hakka, nagu ikka "kes ees see mees"
 
 Asju jagatakse Nõmme Hoovimüügipäevade raames aadressil Raudtee 98, Pühapäeval 20.09.2026 kell 11-16.30 ETTE TEATAMA ega midagi kokku leppima EI PEA! Tule kohale ja võta. Aiavärav on lahti, asjad on laiali laotatud pruunis aiatelgis (väravast tulles paremat kätt).
 
-Hetkel on kataloogitud ÜKS kast, kolm tükki on veel. Kuna piltide tegemine ja juppide kataloogimine on päris ajamahukas, siis kataloog täieneb JOOKSVALT, nii nagu ma jõuan pilte klõpsida asju sorteerida. Seega, vahel on kasulik lehte värskendada.
-
 Kõik jupid on tasuta, aga kui keegi TAHAB siis vastutasuks võib tuua ISA, PCI, MCA retro PC laienduskaarte vms. muid eksootilisi ja "tolmu koguvaid" arvutijubinaid.
 
 Samuti võib minu kasse (3tk) rõõmustada kassiMAIUSE pakikesega. Mõlemad tegevused on täitsa vabatahtlikud.
